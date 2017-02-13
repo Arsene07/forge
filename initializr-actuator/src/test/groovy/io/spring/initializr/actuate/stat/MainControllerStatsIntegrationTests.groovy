@@ -44,7 +44,7 @@ import static org.junit.Assert.fail
  *
  * @author Stephane Nicoll
  */
-@Import(StatsMockController)
+@Import(MainControllerStatsIntegrationTests.StatsMockController)
 @ActiveProfiles(['test-default', 'test-custom-stats'])
 class MainControllerStatsIntegrationTests
 		extends AbstractFullStackInitializrIntegrationTests {

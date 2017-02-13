@@ -154,6 +154,14 @@ class ProjectGenerator {
 		def extension = (language.equals('kotlin') ? 'kt' : language)
 		write(new File(src, "${applicationName}.${extension}"), "Application.$extension", model)
 
+		
+		////
+		write(new File(src, "HelloWorldController.java"), "HelloWorldControllerTemp.java", model)
+		
+		////
+		
+		
+		
 		if (request.packaging == 'war') {
 			def fileName = "ServletInitializer.$extension"
 			write(new File(src, fileName), fileName, model)

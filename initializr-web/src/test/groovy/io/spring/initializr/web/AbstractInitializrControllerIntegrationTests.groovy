@@ -33,7 +33,7 @@ import org.springframework.test.context.TestExecutionListeners.MergeMode
 /**
  * @author Stephane Nicoll
  */
-@ContextConfiguration(classes = RestTemplateConfig)
+@ContextConfiguration(classes = AbstractInitializrControllerIntegrationTests.RestTemplateConfig)
 @TestExecutionListeners(mergeMode = MergeMode.MERGE_WITH_DEFAULTS,
 		listeners = MockMvcClientHttpRequestFactoryTestExecutionListener)
 @AutoConfigureMockMvc

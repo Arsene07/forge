@@ -44,7 +44,7 @@ import static org.junit.Assert.assertTrue
  * @author Dave Syer
  */
 @RunWith(SpringRunner)
-@SpringBootTest(classes = Config, properties = ['spring.metrics.export.delayMillis:500',
+@SpringBootTest(classes = MetricsExportTests.Config, properties = ['spring.metrics.export.delayMillis:500',
 		'spring.metrics.export.enabled:true',
 		'initializr.metrics.prefix:test.prefix', 'initializr.metrics.key:key.test'])
 class MetricsExportTests {

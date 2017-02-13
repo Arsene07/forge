@@ -14,7 +14,7 @@ import org.springframework.core.annotation.Order
 import org.springframework.test.context.ActiveProfiles
 
 @ActiveProfiles('test-default')
-@Import(ProjectRequestPostProcessorConfiguration)
+@Import(ProjectGenerationPostProcessorTests.ProjectRequestPostProcessorConfiguration)
 class ProjectGenerationPostProcessorTests extends AbstractInitializrControllerIntegrationTests {
 
 
