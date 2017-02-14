@@ -67,7 +67,7 @@ git init
 
 echo "adding sources to repo"
 
-git add *
+git add .
 
 echo "commiting .."
 
