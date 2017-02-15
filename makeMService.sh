@@ -117,20 +117,29 @@ else
         # copy template to jenkins jobs folder
         rm -rf ~/Tools/jenkins/jenkins/jobs/$1 > /dev/null 2>&1
         cp -R -f /applis/forge/templates/jenkins/mytemplate/ ~/Tools/jenkins/jenkins/jobs/$1
-        sed -i bak  "s|URL_TO_REPO_ON_GITHUB|https://github.com/Arsene07/$1.git|g" ~/Tools/jenkins/jenkins/jobs/$1/config.xml
+
+        #sed -i bak  "s|URL_TO_REPO_ON_GITHUB|https://github.com/Arsene07/$1.git|g" ~/Tools/jenkins/jenkins/jobs/$1/config.xml
+		sed   "s|URL_TO_REPO_ON_GITHUB|https://github.com/Arsene07/$1.git|g" config_template.xml > config.xml
 		
-	echo "restart jenkins container ..."
-	docker restart youthful_shannon
+		CRUMB=$(curl -s 'http://admin:admin@localhost:49001/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)')
+		
+		echo "creating jenkins job"		
+		curl -s -X POST -H "$CRUMB" 'http://admin:admin@localhost:49001/createItem?name='$1'' --data-binary @config.xml -H "Content-Type:text/xml"
+		
+		echo "starting the jenkins job"
+		curl -X POST -H "$CRUMB"  http://localhost:49001/job/$1/build?delay=0sec --user admin:admin				
+	#echo "restart jenkins container ..."
+	#docker restart youthful_shannon
 	
-	echo "waiting for jenkins to start .."
-	sleep 30
+	#echo "waiting for jenkins to start .."
+	#sleep 30
 	
 	
 	# launch build ..	
 	#curl http://localhost:49001/job/$1/build?delay=0sec
-	CRUMB=$(curl -s 'http://admin:admin@localhost:49001/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)')
+	#CRUMB=$(curl -s 'http://admin:admin@localhost:49001/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)')
 	#curl -X POST http://localhost:49001/job/$1/build?delay=0sec --user admin:admin
-	curl -X POST -H "$CRUMB"  http://localhost:49001/job/$1/build?delay=0sec --user admin:admin
+	#curl -X POST -H "$CRUMB"  http://localhost:49001/job/$1/build?delay=0sec --user admin:admin
 fi 
 
 echo "The End !"
