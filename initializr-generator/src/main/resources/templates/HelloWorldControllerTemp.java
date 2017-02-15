@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
-@RequestMapping("/hello-world")
+@RequestMapping("/${applicationName}")
 public class HelloWorldController {
 
     private static final String template = "Hello, %s!";
 
 	
-    @RequestMapping(value="/hello2", method=RequestMethod.GET)
+    @RequestMapping(value="/hello", method=RequestMethod.GET)
     @ResponseBody
     String  sayHello2(String name) {
-		return "Hello from ${packageName} !";
+		return "Hello from ${applicationName} ! ";
     }	
 
 }
