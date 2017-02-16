@@ -85,7 +85,7 @@ git commit -m "first commit"
 
 echo "creating a repo on github"
 
-curl -k -u 'Arsene07:BlaClaSlaGit.321' https://api.github.com/user/repos -d '{"name":"'$1'"}'
+curl -k -u 'Arsene07:tattata' https://api.github.com/user/repos -d '{"name":"'$1'"}'
 
 echo "adding a remote .."
 
@@ -105,8 +105,10 @@ curl localhost:8080/$1/hello
 
 echo -e "\n\n ################### \n"
 
-echo "delete repos on GitHub Y/N  ?"
-read delete
+#echo "delete repos on GitHub Y/N  ?"
+#read delete
+
+delete="N"
 
 if [ "$delete" == "Y" ]; then
 	echo "deleting repo on GitHub .."
